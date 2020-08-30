@@ -1,0 +1,14 @@
+{
+  "name": "hellowork",
+  "version": "1.0.0",
+  "description": "hellowork",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "edmundo",
+  "license": "ISC",
+  "dependencies": {
+    "jsonpath": "^1.0.2"
+  }
+}
