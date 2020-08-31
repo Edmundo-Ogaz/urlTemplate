@@ -11,51 +11,67 @@ const server = http.createServer((req, res) => {
     req.on('data', (chunk) => {
         body.push(chunk);
     }).on('end', () => {
-        body = Buffer.concat(body).toString();    
-        let oBody = JSON.parse(body);
-        let uri = oBody.url;
-        let uriSegment = uri.split("/"); 
-        let method = oBody.method;
-        let queryString = oBody.queryString;
 
-        var uriTemplate = '';
-        var uriTemplates = jp.query(jsonData, `$.paths`);
-        Object.keys(uriTemplates[0]).some(key => {
-            let uriTemplateSegment = key.split("/");
-            if (uriTemplateSegment.length === uriSegment.length) {
-                uriTemplateSegment.every(function(v, i) {
-                    if (v.charAt(0) === '{' && v.charAt(v.length - 1) === '}')
-                    {
-                        //TEMPLATE
-                    }
-                    else if (! (v === uriSegment[i]) )
-                        return false;
+        let searchRequest = '';
+        try
+        {
+            body = Buffer.concat(body).toString();    
+            let oBody = JSON.parse(body);
+            let uri = oBody.url;
+            let uriSegment = uri.split("/"); 
+            let method = oBody.method;
+            let queryString = oBody.queryString;
 
-                    if (i === uriTemplateSegment.length -1 )
-                        uriTemplate = key;
+            var uriTemplate = '';
+            var uriTemplates = jp.query(jsonData, `$.paths`);
+            Object.keys(uriTemplates[0]).some(key => {
+                let uriTemplateSegment = key.split("/");
+                if (uriTemplateSegment.length === uriSegment.length) {
+                    uriTemplateSegment.every(function(v, i) {
+                        if (v.charAt(0) === '{' && v.charAt(v.length - 1) === '}')
+                        {
+                            //TEMPLATE
+                        }
+                        else if (! (v === uriSegment[i]) )
+                            return false;
+
+                        if (i === uriTemplateSegment.length -1 )
+                            uriTemplate = key;
+                        return true;
+                    });
+                }
+                if (uriTemplate) 
                     return true;
-                });
-            }
-            if (uriTemplate) 
-                return true;
-        });console.log(`uriTemplate: ${uriTemplate}`);
+            });console.log(`uriTemplate: ${uriTemplate}`);
 
-        var parameters = jp.query(jsonData, `$.paths["${uriTemplate}"]..${method}..parameters.*`);
-        let oQueryString = qs.parse(queryString);
-        Object.keys(oQueryString).forEach(function(key) {console.log(key);
-            if ( parameters.find(o => o.name === key && o.in == "query") ) {
-                console.log(`exist ${key}`);
-            }
-            else
-            {
-                console.log(`not exist ${key}`);
-            }
-        });
+            if (! uriTemplate)
+                throw Error('URI NOT FOUND');
+
+            var parameters = jp.query(jsonData, `$.paths["${uriTemplate}"]..${method}..parameters.*`);
+            let oQueryString = qs.parse(queryString);
+            Object.keys(oQueryString).forEach(function(key) {console.log(key);
+                if ( parameters.find(o => o.name === key && o.in == "query") ) {
+                    //console.log(`exist ${key}`);
+                }
+                else
+                {
+                    searchRequest += ` ${key} not found `;
+                }
+            });
+
+            if (! searchRequest)
+                searchRequest = 'FOUND'
+        }
+        catch (error)
+        {
+            searchRequest += error;
+        }
+        console.log(`Request: ${searchRequest}`);
     });
 
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    res.end(`Hello World`);
+    res.end(`Request procceced`);
 });
 
 server.listen(port, hostname, () => {
