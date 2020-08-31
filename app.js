@@ -42,31 +42,28 @@ const server = http.createServer((req, res) => {
                 }
                 if (uriTemplate) 
                     return true;
-            });console.log(`uriTemplate: ${uriTemplate}`);
+            });//console.log(`uriTemplate: ${uriTemplate}`);
 
             if (! uriTemplate)
-                throw Error('URI NOT FOUND');
+                throw Error('URI TEMPLATE NOT FOUND');
 
-            var parameters = jp.query(jsonData, `$.paths["${uriTemplate}"]..${method}..parameters.*`);
+            let parameters = jp.query(jsonData, `$.paths["${uriTemplate}"]..${method}..parameters.*`);
             let oQueryString = qs.parse(queryString);
-            Object.keys(oQueryString).forEach(function(key) {console.log(key);
-                if ( parameters.find(o => o.name === key && o.in == "query") ) {
-                    //console.log(`exist ${key}`);
-                }
-                else
-                {
-                    searchRequest += ` ${key} not found `;
-                }
+            Object.keys(oQueryString).forEach(function(k) {
+                if (! parameters.find(o => o.name === k && o.in == "query") )
+                    searchRequest += `${k} NOT FOUND, `;
             });
 
-            if (! searchRequest)
-                searchRequest = 'FOUND'
+            if (searchRequest)
+                throw Error(searchRequest);
+            else
+                searchRequest = 'Success: REQUEST FOUND';
         }
         catch (error)
         {
-            searchRequest += error;
+            searchRequest = error;
         }
-        console.log(`Request: ${searchRequest}`);
+        console.log(`Response ${searchRequest}`);
     });
 
     res.statusCode = 200;
