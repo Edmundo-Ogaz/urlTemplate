@@ -1,9 +1,14 @@
 const jp = require('jsonpath');
 const qs = require('querystring');
-const jsonData = require('./openapi.json');
 const amqp = require('amqplib/callback_api');
+const log = require('simple-node-logger').createSimpleLogger('outputs.log');
 
-amqp.connect('amqp://hegc:sonreir.123@10.4.230.32:5672', function(error0, connection) {
+const jsonData = require('./openapi.json');
+
+log.setLevel('debug');
+
+//amqp.connect('amqp://hegc:sonreir.123@10.4.230.32:5672', function(error0, connection) {
+amqp.connect('amqp://localhost', function(error0, connection) {
     if (error0) {
         throw error0;
     }
@@ -15,9 +20,9 @@ amqp.connect('amqp://hegc:sonreir.123@10.4.230.32:5672', function(error0, connec
         channel.assertQueue(queue, {
             durable: false
         });
-        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
+        log.debug('[*] Waiting for messages in %s. To exit press CTRL+C ', queue);
         channel.consume(queue, function(msg) {
-            console.log(" [x] Received %s", msg.content.toString());
+            log.debug('[x] Received ', msg.content.toString());
             searchInOpenApiJson(JSON.parse(msg.content));
         }, {
             noAck: true
@@ -29,13 +34,12 @@ const searchInOpenApiJson = REQUEST => {
     let searchRequest = '';
     try
     {
-        const URI = REQUEST.url; console.log(`uri: ${URI}`);
+        const URI = REQUEST.url; log.debug('uri: ', URI);
         const URI_SEGMENT = URI.split("/"); 
-        const METHOD = REQUEST.method; console.log(`method: ${METHOD}`);
-        const QUERYSTRING_TEMP = REQUEST.queryString; console.log(`queryString: ${QUERYSTRING_TEMP}`);
-        const QUERYSTRING = qs.parse(QUERYSTRING_TEMP);
-        // const QUERYSTRING = qs.parse(BODY.queryString); console.log(`queryString: ${QUERYSTRING}`);
-        const BODY = REQUEST.body; console.log(`uri: ${JSON.stringify(BODY)}`);
+        const METHOD = REQUEST.method; log.debug('method: ', METHOD);
+        const QUERYSTRING_TEMP = REQUEST.queryString; log.debug('queryString: ', QUERYSTRING_TEMP);
+        const QUERYSTRING = qs.parse(QUERYSTRING_TEMP); log.debug('queryString object: ', QUERYSTRING);
+        const BODY = REQUEST.body; log.debug('body: ', BODY);
 
         let uriTemplate = '';
         const PATHS = jp.query(jsonData, `$.paths`);
@@ -90,5 +94,5 @@ const searchInOpenApiJson = REQUEST => {
     {
         searchRequest = error;
     }
-    console.log(`Response ${searchRequest}`);
+    log.debug('Response ', searchRequest);
 }
