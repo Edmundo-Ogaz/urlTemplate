@@ -34,6 +34,9 @@ const searchInOpenApiJson = REQUEST => {
     let searchRequest = '';
     try
     {
+        if(REQUEST.url.includes('favicon'))
+            return;
+
         const URI = REQUEST.url; log.debug('uri: ', URI);
         const URI_SEGMENT = URI.split("/"); 
         const METHOD = REQUEST.method.toLowerCase(); log.debug('method: ', METHOD);
