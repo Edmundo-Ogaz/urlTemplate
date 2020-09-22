@@ -7,15 +7,16 @@
     },
     "servers": [
         {
-            "url": "http://192.168.56.10:8080/hlth",
+            "url": "http://api.en.hegc.cl",
             "description": "Development server"
         }
     ],
     "paths": {
-        "/evaluations/{id}": {
+        "/hlth/evaluations/{id}": {
             "get": {
                 "tags": [
-                    "evaluations"
+                    "evaluations",
+                    "get"
                 ],
                 "operationId": "getEvaluation",
                 "parameters": [
@@ -25,6 +26,195 @@
                         "required": true,
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "care-manager-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "clinician-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "deleted",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "yyyy-mm-dd",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "discharge",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "draft",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "interconsulta",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "emit-counter-referral",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "drafts-patient-service-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "patient-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "patient-service-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "patient-service-type-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type-id!",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type-ids[]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "enum",
+                                "enum": [
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6,
+                                    7,
+                                    8,
+                                    9,
+                                    10,
+                                    11,
+                                    12,
+                                    13,
+                                    14,
+                                    15,
+                                    16,
+                                    17,
+                                    18,
+                                    19
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "type-ids!",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
+                        "name": "group",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
+                        "name": "especialidad-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "especialidad-ids",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
                         }
                     }
                 ],
@@ -95,7 +285,7 @@
                 }
             }
         },
-        "/patient-services/{id}": {
+        "/hlth/patient-services/{id}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -142,7 +332,7 @@
                 }
             }
         },
-        "/vital-signs/{id}": {
+        "/hlth/vital-signs/{id}": {
             "get": {
                 "tags": [
                     "vital-signs"
@@ -243,7 +433,7 @@
                 }
             }
         },
-        "/administrations/{id}": {
+        "/hlth/administrations/{id}": {
             "get": {
                 "tags": [
                     "administrations"
@@ -269,7 +459,7 @@
                 }
             }
         },
-        "/administrations": {
+        "/hlth/administrations": {
             "get": {
                 "tags": [
                     "administrations"
@@ -282,7 +472,7 @@
                 }
             }
         },
-        "/admissions/{id}": {
+        "/hlth/admissions/{id}": {
             "get": {
                 "tags": [
                     "admissions"
@@ -338,7 +528,7 @@
                 }
             }
         },
-        "/admission-types/{id}": {
+        "/hlth/admission-types/{id}": {
             "get": {
                 "tags": [
                     "admission-types"
@@ -364,7 +554,7 @@
                 }
             }
         },
-        "/admission-types": {
+        "/hlth/admission-types": {
             "get": {
                 "tags": [
                     "admission-types"
@@ -377,7 +567,7 @@
                 }
             }
         },
-        "/admissions": {
+        "/hlth/admissions": {
             "get": {
                 "tags": [
                     "admissions"
@@ -388,9 +578,26 @@
                         "description": "Operación realizada correctamente."
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "admissions"
+                ],
+                "operationId": "postAdmission",
+                "responses": {
+                    "201": {
+                        "description": "Admisión creada correctamente"
+                    },
+                    "400": {
+                        "description": "Formato de datos de entrada JSON inválidos"
+                    },
+                    "409": {
+                        "description": "Datos de entrada JSON inválidos"
+                    }
+                }
             }
         },
-        "/areas/{id}": {
+        "/hlth/areas/{id}": {
             "get": {
                 "tags": [
                     "areas"
@@ -416,7 +623,7 @@
                 }
             }
         },
-        "/areas": {
+        "/hlth/areas": {
             "get": {
                 "tags": [
                     "areas"
@@ -429,7 +636,7 @@
                 }
             }
         },
-        "/care-managers/{id}": {
+        "/hlth/care-managers/{id}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -485,7 +692,7 @@
                 }
             }
         },
-        "/care-managers/{id}/{path}/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/{path}/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -527,7 +734,7 @@
                 }
             }
         },
-        "/care-managers/{id}/evaluations/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/evaluations/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -561,7 +768,7 @@
                 }
             }
         },
-        "/care-managers/{id}/diagnoses/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/diagnoses/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -595,7 +802,7 @@
                 }
             }
         },
-        "/care-managers/{id}/prescription-documents/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/prescription-documents/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -629,7 +836,7 @@
                 }
             }
         },
-        "/care-managers/{id}/patient-services/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/patient-services/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -663,7 +870,7 @@
                 }
             }
         },
-        "/care-managers/{id}/indications/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/indications/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -697,7 +904,7 @@
                 }
             }
         },
-        "/care-managers/{id}/transfers/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/transfers/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -731,7 +938,7 @@
                 }
             }
         },
-        "/care-managers/{id}/invasiveDeviceUses/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/invasiveDeviceUses/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -765,7 +972,7 @@
                 }
             }
         },
-        "/care-managers/{id}/ext/{path}/{relatedDocumentId}": {
+        "/hlth/care-managers/{id}/ext/{path}/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -807,7 +1014,7 @@
                 }
             }
         },
-        "/care-managers/{id}/{path}": {
+        "/hlth/care-managers/{id}/{path}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -902,7 +1109,7 @@
                 }
             }
         },
-        "/care-managers/{id}/evaluations": {
+        "/hlth/care-managers/{id}/evaluations": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -928,7 +1135,7 @@
                 }
             }
         },
-        "/care-managers/{id}/diagnoses": {
+        "/hlth/care-managers/{id}/diagnoses": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -954,7 +1161,7 @@
                 }
             }
         },
-        "/care-managers/{id}/prescription-documents": {
+        "/hlth/care-managers/{id}/prescription-documents": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -980,7 +1187,7 @@
                 }
             }
         },
-        "/care-managers/{id}/patient-services": {
+        "/hlth/care-managers/{id}/patient-services": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -1014,7 +1221,7 @@
                 }
             }
         },
-        "/care-managers/{id}/indications": {
+        "/hlth/care-managers/{id}/indications": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -1048,7 +1255,7 @@
                 }
             }
         },
-        "/care-managers/{id}/transfers": {
+        "/hlth/care-managers/{id}/transfers": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -1109,7 +1316,7 @@
                 }
             }
         },
-        "/care-managers/{id}/invasiveDeviceUses": {
+        "/hlth/care-managers/{id}/invasiveDeviceUses": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -1143,7 +1350,7 @@
                 }
             }
         },
-        "/care-managers/{id}/ext/{path}": {
+        "/hlth/care-managers/{id}/ext/{path}": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -1217,7 +1424,7 @@
                 }
             }
         },
-        "/care-manager-states/{id}": {
+        "/hlth/care-manager-states/{id}": {
             "get": {
                 "tags": [
                     "care-manager-states"
@@ -1243,7 +1450,7 @@
                 }
             }
         },
-        "/care-manager-states": {
+        "/hlth/care-manager-states": {
             "get": {
                 "tags": [
                     "care-manager-states"
@@ -1256,7 +1463,7 @@
                 }
             }
         },
-        "/care-managers": {
+        "/hlth/care-managers": {
             "get": {
                 "tags": [
                     "care-managers"
@@ -1289,7 +1496,7 @@
                 }
             }
         },
-        "/clinicians/{id}": {
+        "/hlth/clinicians/{id}": {
             "get": {
                 "tags": [
                     "clinicians"
@@ -1315,7 +1522,7 @@
                 }
             }
         },
-        "/clinicians": {
+        "/hlth/clinicians": {
             "get": {
                 "tags": [
                     "clinicians"
@@ -1328,7 +1535,7 @@
                 }
             }
         },
-        "/diagnoses": {
+        "/hlth/diagnoses": {
             "get": {
                 "tags": [
                     "diagnoses"
@@ -1341,7 +1548,7 @@
                 }
             }
         },
-        "/diagnoses/{id}": {
+        "/hlth/diagnoses/{id}": {
             "get": {
                 "tags": [
                     "diagnoses"
@@ -1367,7 +1574,7 @@
                 }
             }
         },
-        "/diagnosis-states/{id}": {
+        "/hlth/diagnosis-states/{id}": {
             "get": {
                 "tags": [
                     "diagnosis-states"
@@ -1393,7 +1600,7 @@
                 }
             }
         },
-        "/diagnosis-states": {
+        "/hlth/diagnosis-states": {
             "get": {
                 "tags": [
                     "diagnosis-states"
@@ -1406,7 +1613,7 @@
                 }
             }
         },
-        "/diagnosis-types/{id}": {
+        "/hlth/diagnosis-types/{id}": {
             "get": {
                 "tags": [
                     "diagnosis-types"
@@ -1432,7 +1639,7 @@
                 }
             }
         },
-        "/diagnosis-types": {
+        "/hlth/diagnosis-types": {
             "get": {
                 "tags": [
                     "diagnosis-types"
@@ -1445,7 +1652,7 @@
                 }
             }
         },
-        "/dispensings/{id}": {
+        "/hlth/dispensings/{id}": {
             "get": {
                 "tags": [
                     "dispensings"
@@ -1471,7 +1678,7 @@
                 }
             }
         },
-        "/dispensings": {
+        "/hlth/dispensings": {
             "get": {
                 "tags": [
                     "dispensings"
@@ -1484,7 +1691,7 @@
                 }
             }
         },
-        "/evaluation-types/{id}": {
+        "/hlth/evaluation-types/{id}": {
             "get": {
                 "tags": [
                     "evaluation-types"
@@ -1510,7 +1717,7 @@
                 }
             }
         },
-        "/evaluation-types": {
+        "/hlth/evaluation-types": {
             "get": {
                 "tags": [
                     "evaluation-types"
@@ -1523,12 +1730,180 @@
                 }
             }
         },
-        "/evaluations": {
+        "/hlth/evaluations": {
             "get": {
                 "tags": [
                     "evaluations"
                 ],
                 "operationId": "getEvaluations",
+                "parameters": [
+                    {
+                        "name": "care-manager-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "clinician-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "deleted",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "yyyy-mm-dd",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "discharge",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "draft",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "interconsulta",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "emit-counter-referral",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "drafts-patient-service-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "patient-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "patient-service-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "patient-service-type-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type-id!",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type-ids",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
+                        "name": "type-ids!",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
+                        "name": "group",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
+                        "name": "especialidad-id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "especialidad-ids",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Operación realizada correctamente"
@@ -1536,7 +1911,7 @@
                 }
             }
         },
-        "/genres/{id}": {
+        "/hlth/genres/{id}": {
             "get": {
                 "tags": [
                     "genres"
@@ -1562,7 +1937,7 @@
                 }
             }
         },
-        "/genres": {
+        "/hlth/genres": {
             "get": {
                 "tags": [
                     "genres"
@@ -1575,7 +1950,7 @@
                 }
             }
         },
-        "/health-benefits/{id}": {
+        "/hlth/health-benefits/{id}": {
             "get": {
                 "tags": [
                     "health-benefits"
@@ -1601,7 +1976,7 @@
                 }
             }
         },
-        "/health-benefit-types/{id}": {
+        "/hlth/health-benefit-types/{id}": {
             "get": {
                 "tags": [
                     "health-benefit-types"
@@ -1628,7 +2003,7 @@
                 }
             }
         },
-        "/health-benefit-types": {
+        "/hlth/health-benefit-types": {
             "get": {
                 "tags": [
                     "health-benefit-types"
@@ -1642,7 +2017,7 @@
                 }
             }
         },
-        "/health-benefits": {
+        "/hlth/health-benefits": {
             "get": {
                 "tags": [
                     "health-benefits"
@@ -1656,7 +2031,7 @@
                 }
             }
         },
-        "/indications/{id}": {
+        "/hlth/indications/{id}": {
             "get": {
                 "tags": [
                     "indications"
@@ -1682,7 +2057,7 @@
                 }
             }
         },
-        "/indication-categories": {
+        "/hlth/indication-categories": {
             "get": {
                 "tags": [
                     "indication-categories"
@@ -1695,7 +2070,7 @@
                 }
             }
         },
-        "/indication-categories/{id}": {
+        "/hlth/indication-categories/{id}": {
             "get": {
                 "tags": [
                     "indication-categories"
@@ -1721,7 +2096,7 @@
                 }
             }
         },
-        "/indications/{id}/{path}": {
+        "/hlth/indications/{id}/{path}": {
             "get": {
                 "tags": [
                     "indications"
@@ -1819,7 +2194,7 @@
                 }
             }
         },
-        "/indications/{id}/ext/{path}": {
+        "/hlth/indications/{id}/ext/{path}": {
             "get": {
                 "tags": [
                     "indications"
@@ -1853,7 +2228,7 @@
                 }
             }
         },
-        "/indication-states/{id}": {
+        "/hlth/indication-states/{id}": {
             "get": {
                 "tags": [
                     "indication-states"
@@ -1879,7 +2254,7 @@
                 }
             }
         },
-        "/indication-states": {
+        "/hlth/indication-states": {
             "get": {
                 "tags": [
                     "indication-states"
@@ -1892,7 +2267,7 @@
                 }
             }
         },
-        "/indication-types/{id}": {
+        "/hlth/indication-types/{id}": {
             "get": {
                 "tags": [
                     "indication-types"
@@ -1918,7 +2293,7 @@
                 }
             }
         },
-        "/indication-types": {
+        "/hlth/indication-types": {
             "get": {
                 "tags": [
                     "indication-types"
@@ -1931,7 +2306,7 @@
                 }
             }
         },
-        "/indications": {
+        "/hlth/indications": {
             "get": {
                 "tags": [
                     "indications"
@@ -1944,7 +2319,7 @@
                 }
             }
         },
-        "/invasive-devices/{id}": {
+        "/hlth/invasive-devices/{id}": {
             "get": {
                 "tags": [
                     "invasive-devices"
@@ -1968,7 +2343,7 @@
                 }
             }
         },
-        "/invasive-device-uses/{id}": {
+        "/hlth/invasive-device-uses/{id}": {
             "get": {
                 "tags": [
                     "invasive-device-uses"
@@ -2017,7 +2392,7 @@
                 }
             }
         },
-        "/invasive-devices-historial": {
+        "/hlth/invasive-devices-historial": {
             "get": {
                 "tags": [
                     "invasive-devices-historial"
@@ -2030,7 +2405,7 @@
                 }
             }
         },
-        "/invasive-devices-historial/{id}": {
+        "/hlth/invasive-devices-historial/{id}": {
             "get": {
                 "tags": [
                     "invasive-devices-historial"
@@ -2054,7 +2429,7 @@
                 }
             }
         },
-        "/invasive-device-uses": {
+        "/hlth/invasive-device-uses": {
             "get": {
                 "tags": [
                     "invasive-device-uses"
@@ -2068,7 +2443,7 @@
                 }
             }
         },
-        "/invasive-devices": {
+        "/hlth/invasive-devices": {
             "get": {
                 "tags": [
                     "invasive-devices"
@@ -2081,7 +2456,7 @@
                 }
             }
         },
-        "/locations/{id}": {
+        "/hlth/locations/{id}": {
             "get": {
                 "tags": [
                     "locations"
@@ -2137,7 +2512,7 @@
                 }
             }
         },
-        "/location-histories": {
+        "/hlth/location-histories": {
             "get": {
                 "tags": [
                     "location-histories"
@@ -2150,7 +2525,7 @@
                 }
             }
         },
-        "/location-histories/{id}": {
+        "/hlth/location-histories/{id}": {
             "get": {
                 "tags": [
                     "location-histories"
@@ -2176,7 +2551,7 @@
                 }
             }
         },
-        "/locations": {
+        "/hlth/locations": {
             "get": {
                 "tags": [
                     "locations"
@@ -2206,7 +2581,7 @@
                 }
             }
         },
-        "/logs/{id}": {
+        "/hlth/logs/{id}": {
             "get": {
                 "tags": [
                     "logs"
@@ -2232,7 +2607,7 @@
                 }
             }
         },
-        "/logs": {
+        "/hlth/logs": {
             "get": {
                 "tags": [
                     "logs"
@@ -2256,7 +2631,7 @@
                 }
             }
         },
-        "/patients/{id}": {
+        "/hlth/patients/{id}": {
             "get": {
                 "tags": [
                     "patients"
@@ -2379,7 +2754,7 @@
                 }
             }
         },
-        "/patients/{id}/benefits": {
+        "/hlth/patients/{id}/benefits": {
             "get": {
                 "tags": [
                     "patients"
@@ -2406,7 +2781,7 @@
                 }
             }
         },
-        "/patients/{id}/{path}": {
+        "/hlth/patients/{id}/{path}": {
             "get": {
                 "tags": [
                     "patients"
@@ -2490,7 +2865,7 @@
                 }
             }
         },
-        "/patients/{id}/ext/{path}": {
+        "/hlth/patients/{id}/ext/{path}": {
             "get": {
                 "tags": [
                     "patients"
@@ -2602,7 +2977,7 @@
                 }
             }
         },
-        "/patients/{id}/care-managers": {
+        "/hlth/patients/{id}/care-managers": {
             "get": {
                 "tags": [
                     "patients"
@@ -2629,7 +3004,7 @@
                 }
             }
         },
-        "/patients/{id}/patient-services": {
+        "/hlth/patients/{id}/patient-services": {
             "get": {
                 "tags": [
                     "patients"
@@ -2656,7 +3031,7 @@
                 }
             }
         },
-        "/patients/{id}/vital-signs": {
+        "/hlth/patients/{id}/vital-signs": {
             "get": {
                 "tags": [
                     "patients"
@@ -2683,7 +3058,7 @@
                 }
             }
         },
-        "/patient-services/{id}/{path}/{relatedDocumentId}": {
+        "/hlth/patient-services/{id}/{path}/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -2752,7 +3127,7 @@
                 }
             }
         },
-        "/patient-services/{id}/diagnosis/{relatedDocumentId}": {
+        "/hlth/patient-services/{id}/diagnosis/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -2786,7 +3161,7 @@
                 }
             }
         },
-        "/patient-services/{id}/indications/{relatedDocumentId}": {
+        "/hlth/patient-services/{id}/indications/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -2820,7 +3195,7 @@
                 }
             }
         },
-        "/patient-services/{id}/evaluations/{relatedDocumentId}": {
+        "/hlth/patient-services/{id}/evaluations/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -2854,7 +3229,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{relatedDocumentId}": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -2888,7 +3263,7 @@
                 }
             }
         },
-        "/patient-services/{id}/ext/{path}/{relatedDocumentId}": {
+        "/hlth/patient-services/{id}/ext/{path}/{relatedDocumentId}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -2956,7 +3331,7 @@
                 }
             }
         },
-        "/patient-services/{id}/{path}": {
+        "/hlth/patient-services/{id}/{path}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -3054,7 +3429,7 @@
                 }
             }
         },
-        "/patient-services/{id}/diagnosis": {
+        "/hlth/patient-services/{id}/diagnosis": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -3080,7 +3455,7 @@
                 }
             }
         },
-        "/patient-services/{id}/indications": {
+        "/hlth/patient-services/{id}/indications": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -3106,7 +3481,7 @@
                 }
             }
         },
-        "/patient-services/{id}/evaluations": {
+        "/hlth/patient-services/{id}/evaluations": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -3164,7 +3539,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -3219,7 +3594,7 @@
                 }
             }
         },
-        "/patient-services/{id}/ext/{path}": {
+        "/hlth/patient-services/{id}/ext/{path}": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -3282,7 +3657,7 @@
                 }
             }
         },
-        "/patient-service-states/{id}": {
+        "/hlth/patient-service-states/{id}": {
             "get": {
                 "tags": [
                     "patient-service-states"
@@ -3308,7 +3683,7 @@
                 }
             }
         },
-        "/patient-service-states": {
+        "/hlth/patient-service-states": {
             "get": {
                 "tags": [
                     "patient-service-states"
@@ -3321,7 +3696,7 @@
                 }
             }
         },
-        "/patient-service-types/{id}": {
+        "/hlth/patient-service-types/{id}": {
             "get": {
                 "tags": [
                     "patient-service-types"
@@ -3347,7 +3722,7 @@
                 }
             }
         },
-        "/patient-service-types": {
+        "/hlth/patient-service-types": {
             "get": {
                 "tags": [
                     "patient-service-types"
@@ -3360,7 +3735,7 @@
                 }
             }
         },
-        "/patient-services": {
+        "/hlth/patient-services": {
             "get": {
                 "tags": [
                     "patient-services"
@@ -3390,7 +3765,7 @@
                 }
             }
         },
-        "/patients": {
+        "/hlth/patients": {
             "get": {
                 "tags": [
                     "patients"
@@ -3487,7 +3862,7 @@
                 }
             }
         },
-        "/prescriptions/{id}": {
+        "/hlth/prescriptions/{id}": {
             "get": {
                 "tags": [
                     "prescriptions"
@@ -3513,7 +3888,7 @@
                 }
             }
         },
-        "/prescription-documents/{id}": {
+        "/hlth/prescription-documents/{id}": {
             "get": {
                 "tags": [
                     "prescription-documents"
@@ -3539,7 +3914,7 @@
                 }
             }
         },
-        "/prescription-documents": {
+        "/hlth/prescription-documents": {
             "get": {
                 "tags": [
                     "prescription-documents"
@@ -3552,7 +3927,7 @@
                 }
             }
         },
-        "/prescription-types/{id}": {
+        "/hlth/prescription-types/{id}": {
             "get": {
                 "tags": [
                     "prescription-types"
@@ -3578,7 +3953,7 @@
                 }
             }
         },
-        "/prescription-types": {
+        "/hlth/prescription-types": {
             "get": {
                 "tags": [
                     "prescription-types"
@@ -3591,7 +3966,7 @@
                 }
             }
         },
-        "/prescriptions": {
+        "/hlth/prescriptions": {
             "get": {
                 "tags": [
                     "prescriptions"
@@ -3604,7 +3979,7 @@
                 }
             }
         },
-        "/routes/{id}": {
+        "/hlth/routes/{id}": {
             "get": {
                 "tags": [
                     "routes"
@@ -3630,7 +4005,7 @@
                 }
             }
         },
-        "/routes": {
+        "/hlth/routes": {
             "get": {
                 "tags": [
                     "routes"
@@ -3663,7 +4038,7 @@
                 }
             }
         },
-        "/schedules/{id}": {
+        "/hlth/schedules/{id}": {
             "get": {
                 "tags": [
                     "schedules"
@@ -3689,7 +4064,7 @@
                 }
             }
         },
-        "/schedule-states/{id}": {
+        "/hlth/schedule-states/{id}": {
             "get": {
                 "tags": [
                     "schedule-states"
@@ -3715,7 +4090,7 @@
                 }
             }
         },
-        "/schedule-states": {
+        "/hlth/schedule-states": {
             "get": {
                 "tags": [
                     "schedule-states"
@@ -3728,7 +4103,7 @@
                 }
             }
         },
-        "/schedules": {
+        "/hlth/schedules": {
             "get": {
                 "tags": [
                     "schedules"
@@ -3758,7 +4133,7 @@
                 }
             }
         },
-        "/tests": {
+        "/hlth/tests": {
             "get": {
                 "tags": [
                     "tests"
@@ -3771,7 +4146,7 @@
                 }
             }
         },
-        "/transfers/{id}": {
+        "/hlth/transfers/{id}": {
             "get": {
                 "tags": [
                     "transfers"
@@ -3797,7 +4172,7 @@
                 }
             }
         },
-        "/transfers/{id}/{path}": {
+        "/hlth/transfers/{id}/{path}": {
             "get": {
                 "tags": [
                     "transfers"
@@ -3863,7 +4238,7 @@
                 }
             }
         },
-        "/transfers/{id}/ext/{path}": {
+        "/hlth/transfers/{id}/ext/{path}": {
             "get": {
                 "tags": [
                     "transfers"
@@ -3929,7 +4304,7 @@
                 }
             }
         },
-        "/transfer-states/{id}": {
+        "/hlth/transfer-states/{id}": {
             "get": {
                 "tags": [
                     "transfer-states"
@@ -3955,7 +4330,7 @@
                 }
             }
         },
-        "/transfer-states": {
+        "/hlth/transfer-states": {
             "get": {
                 "tags": [
                     "transfer-states"
@@ -3968,7 +4343,7 @@
                 }
             }
         },
-        "/transfers": {
+        "/hlth/transfers": {
             "get": {
                 "tags": [
                     "transfers"
@@ -3981,7 +4356,7 @@
                 }
             }
         },
-        "/vital-sign-types/{id}": {
+        "/hlth/vital-sign-types/{id}": {
             "get": {
                 "tags": [
                     "vital-sign-types"
@@ -4007,7 +4382,7 @@
                 }
             }
         },
-        "/vital-sign-types": {
+        "/hlth/vital-sign-types": {
             "get": {
                 "tags": [
                     "vital-sign-types"
@@ -4020,7 +4395,7 @@
                 }
             }
         },
-        "/vital-signs": {
+        "/hlth/vital-signs": {
             "get": {
                 "tags": [
                     "vital-signs"
@@ -4033,7 +4408,7 @@
                 }
             }
         },
-        "/prescription/{id}/administrations/_{action}": {
+        "/hlth/prescriptions/{id}/administrations/_{action}": {
             "patch": {
                 "tags": [
                     "prescriptions"
@@ -4067,7 +4442,7 @@
                 }
             }
         },
-        "/prescription/{id}/administrations/administer": {
+        "/hlth/prescriptions/{id}/administrations/administer": {
             "patch": {
                 "tags": [
                     "prescriptions"
@@ -4093,7 +4468,7 @@
                 }
             }
         },
-        "/prescription/{id}/administrations/cancel": {
+        "/hlth/prescriptions/{id}/administrations/cancel": {
             "patch": {
                 "tags": [
                     "prescriptions"
@@ -4119,7 +4494,7 @@
                 }
             }
         },
-        "/admission/{id}/_{action}": {
+        "/hlth/admissions/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "admissions"
@@ -4153,7 +4528,7 @@
                 }
             }
         },
-        "/admission/{id}/bill": {
+        "/hlth/admissions/{id}/bill": {
             "patch": {
                 "tags": [
                     "admissions"
@@ -4179,7 +4554,7 @@
                 }
             }
         },
-        "/admissions/{id}/{path}": {
+        "/hlth/admissions/{id}/{path}": {
             "patch": {
                 "tags": [
                     "admissions"
@@ -4213,7 +4588,7 @@
                 }
             }
         },
-        "/admissions/{id}/ext/{path}": {
+        "/hlth/admissions/{id}/ext/{path}": {
             "patch": {
                 "tags": [
                     "admissions"
@@ -4244,7 +4619,7 @@
                 }
             }
         },
-        "/care-managers/{id}/admit": {
+        "/hlth/care-managers/{id}/admit": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4267,7 +4642,7 @@
                 }
             }
         },
-        "/care-managers/{id}/bill": {
+        "/hlth/care-managers/{id}/bill": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4290,7 +4665,7 @@
                 }
             }
         },
-        "/care-managers/{id}/cancel": {
+        "/hlth/care-managers/{id}/cancel": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4313,7 +4688,7 @@
                 }
             }
         },
-        "/care-managers/{id}/finish": {
+        "/hlth/care-managers/{id}/finish": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4336,7 +4711,7 @@
                 }
             }
         },
-        "/care-managers/{id}/open": {
+        "/hlth/care-managers/{id}/open": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4359,7 +4734,7 @@
                 }
             }
         },
-        "/care-managers/{id}/finishIdle": {
+        "/hlth/care-managers/{id}/finishIdle": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4382,7 +4757,7 @@
                 }
             }
         },
-        "/care-managers/{id}/_{action}": {
+        "/hlth/care-managers/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4416,7 +4791,7 @@
                 }
             }
         },
-        "/care-managers/_{action}": {
+        "/hlth/care-managers/_{action}": {
             "patch": {
                 "tags": [
                     "care-managers"
@@ -4442,7 +4817,7 @@
                 }
             }
         },
-        "/indications/{id}/_{action}": {
+        "/hlth/indications/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4476,7 +4851,7 @@
                 }
             }
         },
-        "/indications/{id}/_accept": {
+        "/hlth/indications/{id}/_accept": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4502,7 +4877,7 @@
                 }
             }
         },
-        "/indications/{id}/_cancel": {
+        "/hlth/indications/{id}/_cancel": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4528,7 +4903,7 @@
                 }
             }
         },
-        "/indications/{id}/_discharge": {
+        "/hlth/indications/{id}/_discharge": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4554,7 +4929,7 @@
                 }
             }
         },
-        "/indications/{id}/_dismiss": {
+        "/hlth/indications/{id}/_dismiss": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4580,7 +4955,7 @@
                 }
             }
         },
-        "/indications/{id}/_finish": {
+        "/hlth/indications/{id}/_finish": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4606,7 +4981,7 @@
                 }
             }
         },
-        "/indications/{id}/_log": {
+        "/hlth/indications/{id}/_log": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4632,7 +5007,7 @@
                 }
             }
         },
-        "/indications/{id}/_request": {
+        "/hlth/indications/{id}/_request": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4658,7 +5033,7 @@
                 }
             }
         },
-        "/indications/{id}/_requestDischarge": {
+        "/hlth/indications/{id}/_requestDischarge": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4684,7 +5059,7 @@
                 }
             }
         },
-        "/indications/{id}/_start": {
+        "/hlth/indications/{id}/_start": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4710,7 +5085,7 @@
                 }
             }
         },
-        "/indications/{id}/_suggest": {
+        "/hlth/indications/{id}/_suggest": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4736,7 +5111,7 @@
                 }
             }
         },
-        "/indications/{id}/ext/administrations": {
+        "/hlth/indications/{id}/ext/administrations": {
             "post": {
                 "tags": [
                     "indications"
@@ -4786,7 +5161,7 @@
                 }
             }
         },
-        "/indications/{id}/ext/log": {
+        "/hlth/indications/{id}/ext/log": {
             "post": {
                 "tags": [
                     "indications"
@@ -4836,7 +5211,7 @@
                 }
             }
         },
-        "/indications/_{action}": {
+        "/hlth/indications/_{action}": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4870,7 +5245,7 @@
                 }
             }
         },
-        "/indications/accept": {
+        "/hlth/indications/accept": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4896,7 +5271,7 @@
                 }
             }
         },
-        "/indications/cancel": {
+        "/hlth/indications/cancel": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4922,7 +5297,7 @@
                 }
             }
         },
-        "/indications/discharge": {
+        "/hlth/indications/discharge": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4948,7 +5323,7 @@
                 }
             }
         },
-        "/indications/dismiss": {
+        "/hlth/indications/dismiss": {
             "patch": {
                 "tags": [
                     "indications"
@@ -4974,7 +5349,7 @@
                 }
             }
         },
-        "/indications/finish": {
+        "/hlth/indications/finish": {
             "patch": {
                 "tags": [
                     "indications"
@@ -5000,7 +5375,7 @@
                 }
             }
         },
-        "/indications/log": {
+        "/hlth/indications/log": {
             "patch": {
                 "tags": [
                     "indications"
@@ -5026,7 +5401,7 @@
                 }
             }
         },
-        "/indications/request": {
+        "/hlth/indications/request": {
             "patch": {
                 "tags": [
                     "indications"
@@ -5052,7 +5427,7 @@
                 }
             }
         },
-        "/indications/requestDischarge": {
+        "/hlth/indications/requestDischarge": {
             "patch": {
                 "tags": [
                     "indications"
@@ -5078,7 +5453,7 @@
                 }
             }
         },
-        "/indications/start": {
+        "/hlth/indications/start": {
             "patch": {
                 "tags": [
                     "indications"
@@ -5104,7 +5479,7 @@
                 }
             }
         },
-        "/indications/suggest": {
+        "/hlth/indications/suggest": {
             "patch": {
                 "tags": [
                     "indications"
@@ -5130,7 +5505,7 @@
                 }
             }
         },
-        "/invasive-device-uses/{id}/_{action}": {
+        "/hlth/invasive-device-uses/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "invasive-device-uses"
@@ -5165,7 +5540,7 @@
                 }
             }
         },
-        "/invasive-devices-historial/{id}/_{action}": {
+        "/hlth/invasive-devices-historial/{id}/_{action}": {
             "post": {
                 "tags": [
                     "invasive-devices-historial"
@@ -5198,7 +5573,7 @@
                 }
             }
         },
-        "/locations/{id}/_{action}": {
+        "/hlth/locations/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5232,7 +5607,7 @@
                 }
             }
         },
-        "/locations/{id}/block": {
+        "/hlth/locations/{id}/block": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5258,7 +5633,7 @@
                 }
             }
         },
-        "/locations/{id}/disable": {
+        "/hlth/locations/{id}/disable": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5281,7 +5656,7 @@
                 }
             }
         },
-        "/locations/{id}/free": {
+        "/hlth/locations/{id}/free": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5304,7 +5679,7 @@
                 }
             }
         },
-        "/locations/{id}/reserve": {
+        "/hlth/locations/{id}/reserve": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5330,7 +5705,7 @@
                 }
             }
         },
-        "/locations/{id}/use": {
+        "/hlth/locations/{id}/use": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5353,7 +5728,7 @@
                 }
             }
         },
-        "/locations/{id}/{path}": {
+        "/hlth/locations/{id}/{path}": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5387,7 +5762,7 @@
                 }
             }
         },
-        "/locations/{id}/ext/{path}": {
+        "/hlth/locations/{id}/ext/{path}": {
             "patch": {
                 "tags": [
                     "locations"
@@ -5421,7 +5796,7 @@
                 }
             }
         },
-        "/patient-services/{id}/_{action}": {
+        "/hlth/patient-services/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5455,7 +5830,7 @@
                 }
             }
         },
-        "/patient-services/{id}/cancel": {
+        "/hlth/patient-services/{id}/cancel": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5478,7 +5853,7 @@
                 }
             }
         },
-        "/patient-services/{id}/open": {
+        "/hlth/patient-services/{id}/open": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5501,7 +5876,7 @@
                 }
             }
         },
-        "/patient-services/{id}/finish": {
+        "/hlth/patient-services/{id}/finish": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5524,7 +5899,7 @@
                 }
             }
         },
-        "/patient-services/{id}/finishing": {
+        "/hlth/patient-services/{id}/finishing": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5547,7 +5922,7 @@
                 }
             }
         },
-        "/patient-services/{id}/lockTransfers": {
+        "/hlth/patient-services/{id}/lockTransfers": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5570,7 +5945,7 @@
                 }
             }
         },
-        "/patient-services/{id}/swapLocation": {
+        "/hlth/patient-services/{id}/swapLocation": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5593,7 +5968,7 @@
                 }
             }
         },
-        "/patient-services/{id}/ejectLocation": {
+        "/hlth/patient-services/{id}/ejectLocation": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5616,7 +5991,7 @@
                 }
             }
         },
-        "/patient-services/{id}/unlockTransfers": {
+        "/hlth/patient-services/{id}/unlockTransfers": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5639,7 +6014,7 @@
                 }
             }
         },
-        "/patient-services/{id}/evaluations/{idEvaluation}": {
+        "/hlth/patient-services/{id}/evaluations/{idEvaluation}": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5673,7 +6048,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5704,7 +6079,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/{action}": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/{action}": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5746,7 +6121,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/check": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/check": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5777,7 +6152,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/cure": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/cure": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5808,7 +6183,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/circuit_change": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/circuit_change": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5839,7 +6214,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/tet_rotation": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/tet_rotation": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5870,7 +6245,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/remove": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/remove": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5901,7 +6276,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/delete": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/delete": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5932,7 +6307,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/discharge": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/discharge": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5963,7 +6338,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/edit_specific_uses": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/edit_specific_uses": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -5994,7 +6369,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/undo_specific_uses": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/undo_specific_uses": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -6025,7 +6400,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/undo_delete": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/undo_delete": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -6056,7 +6431,7 @@
                 }
             }
         },
-        "/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/undo_remove": {
+        "/hlth/patient-services/{id}/invasiveDeviceUses/{idInvasiveDeviceUses}/undo_remove": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -6087,7 +6462,7 @@
                 }
             }
         },
-        "/patient-services/{id}/location": {
+        "/hlth/patient-services/{id}/location": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -6113,7 +6488,7 @@
                 }
             }
         },
-        "/patient-services/{id}/ext/dimensions": {
+        "/hlth/patient-services/{id}/ext/dimensions": {
             "patch": {
                 "tags": [
                     "patient-services"
@@ -6144,7 +6519,7 @@
                 }
             }
         },
-        "/schedules/{id}/_{action}": {
+        "/hlth/schedules/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6178,7 +6553,7 @@
                 }
             }
         },
-        "/schedules/{id}/_cancel": {
+        "/hlth/schedules/{id}/_cancel": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6204,7 +6579,7 @@
                 }
             }
         },
-        "/schedules/{id}/_confirm": {
+        "/hlth/schedules/{id}/_confirm": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6230,7 +6605,7 @@
                 }
             }
         },
-        "/schedules/{id}/_execute": {
+        "/hlth/schedules/{id}/_execute": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6256,7 +6631,7 @@
                 }
             }
         },
-        "/schedules/{id}/_finish": {
+        "/hlth/schedules/{id}/_finish": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6282,7 +6657,7 @@
                 }
             }
         },
-        "/schedules/{id}/_notice": {
+        "/hlth/schedules/{id}/_notice": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6308,7 +6683,7 @@
                 }
             }
         },
-        "/schedules/{id}/_schedule": {
+        "/hlth/schedules/{id}/_schedule": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6334,7 +6709,7 @@
                 }
             }
         },
-        "/schedules/{id}/_wait": {
+        "/hlth/schedules/{id}/_wait": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6360,7 +6735,7 @@
                 }
             }
         },
-        "/schedules/{id}/{path}": {
+        "/hlth/schedules/{id}/{path}": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6394,7 +6769,7 @@
                 }
             }
         },
-        "/schedules/{id}/ext/{path}": {
+        "/hlth/schedules/{id}/ext/{path}": {
             "patch": {
                 "tags": [
                     "schedules"
@@ -6428,7 +6803,7 @@
                 }
             }
         },
-        "/transfer/{id}/_{action}": {
+        "/hlth/transfers/{id}/_{action}": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6462,7 +6837,7 @@
                 }
             }
         },
-        "/transfer/{id}/accept": {
+        "/hlth/transfers/{id}/accept": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6485,7 +6860,7 @@
                 }
             }
         },
-        "/transfer/{id}/cancel": {
+        "/hlth/transfers/{id}/cancel": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6508,7 +6883,7 @@
                 }
             }
         },
-        "/transfer/{id}/changeLocation": {
+        "/hlth/transfers/{id}/changeLocation": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6531,7 +6906,7 @@
                 }
             }
         },
-        "/transfer/{id}/finish": {
+        "/hlth/transfers/{id}/finish": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6554,7 +6929,7 @@
                 }
             }
         },
-        "/transfer/{id}/reject": {
+        "/hlth/transfers/{id}/reject": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6577,7 +6952,7 @@
                 }
             }
         },
-        "/transfer/{id}/reschedule": {
+        "/hlth/transfers/{id}/reschedule": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6600,7 +6975,7 @@
                 }
             }
         },
-        "/transfer/{id}/suspend": {
+        "/hlth/transfers/{id}/suspend": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6623,7 +6998,7 @@
                 }
             }
         },
-        "/transfer/{id}/transit": {
+        "/hlth/transfers/{id}/transit": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6646,7 +7021,7 @@
                 }
             }
         },
-        "/tranfers/{id}": {
+        "/hlth/tranfers/{id}": {
             "patch": {
                 "tags": [
                     "transfers"
@@ -6678,26 +7053,7 @@
                 }
             }
         },
-        "/admission": {
-            "post": {
-                "tags": [
-                    "admissions"
-                ],
-                "operationId": "postAdmission",
-                "responses": {
-                    "201": {
-                        "description": "Admisión creada correctamente"
-                    },
-                    "400": {
-                        "description": "Formato de datos de entrada JSON inválidos"
-                    },
-                    "409": {
-                        "description": "Datos de entrada JSON inválidos"
-                    }
-                }
-            }
-        },
-        "/patient-services/{id}/vitalSigns": {
+        "/hlth/patient-services/{id}/vitalSigns": {
             "post": {
                 "tags": [
                     "patient-services"
@@ -6787,6 +7143,16 @@
             "409": {
                 "description": "Datos de entrada JSON inválidos"
             }
+        },
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "name": "authorization",
+                "scheme": "basic"
+            }
         }
+    },
+    "security": {
+        "basicAuth": []
     }
 }

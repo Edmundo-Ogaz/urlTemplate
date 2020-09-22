@@ -7,8 +7,8 @@ const jsonData = require('./openapi.json');
 
 log.setLevel('debug');
 
-//amqp.connect('amqp://hegc:sonreir.123@10.4.230.32:5672', function(error0, connection) {
-amqp.connect('amqp://localhost', function(error0, connection) {
+amqp.connect('amqp://hegc:sonreir.123@10.4.230.32:5672', function(error0, connection) {
+//amqp.connect('amqp://localhost', function(error0, connection) {
     if (error0) {
         throw error0;
     }
@@ -20,9 +20,9 @@ amqp.connect('amqp://localhost', function(error0, connection) {
         channel.assertQueue(queue, {
             durable: false
         });
-        log.debug('[*] Waiting for messages in %s. To exit press CTRL+C ', queue);
+        log.info('[*] Waiting for messages in %s. To exit press CTRL+C ', queue);
         channel.consume(queue, function(msg) {
-            log.debug('[x] Received ', msg.content.toString());
+            log.info('[x] Received ', msg.content.toString());
             searchInOpenApiJson(JSON.parse(msg.content));
         }, {
             noAck: true
@@ -36,10 +36,13 @@ const searchInOpenApiJson = REQUEST => {
     {
         const URI = REQUEST.url; log.debug('uri: ', URI);
         const URI_SEGMENT = URI.split("/"); 
-        const METHOD = REQUEST.method; log.debug('method: ', METHOD);
+        const METHOD = REQUEST.method.toLowerCase(); log.debug('method: ', METHOD);
         const QUERYSTRING_TEMP = REQUEST.queryString; log.debug('queryString: ', QUERYSTRING_TEMP);
         const QUERYSTRING = qs.parse(QUERYSTRING_TEMP); log.debug('queryString object: ', QUERYSTRING);
         const BODY = REQUEST.body; log.debug('body: ', BODY);
+
+        if(!URI.includes('/hlth/'))
+            throw Error('REQUEST SKIPED');
 
         let uriTemplate = '';
         const PATHS = jp.query(jsonData, `$.paths`);
@@ -92,7 +95,7 @@ const searchInOpenApiJson = REQUEST => {
     }
     catch (error)
     {
-        searchRequest = error;
+        searchRequest = error.message;
     }
-    log.debug('Response ', searchRequest);
+    log.info('Response ', searchRequest);
 }
